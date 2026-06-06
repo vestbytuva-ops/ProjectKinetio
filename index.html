@@ -53,7 +53,44 @@
 </section>
 
 <section class="kalkulator">
-  <div class="kalkulator-container">
-    <h2 class="karakter-kalkulator">Karakterkalkulator</h2>
-    <p class="kalkulator-tekst">Skriv inn karakterene dine for å se hva du trenger på neste prøve for å nå målet ditt.</p>
+  <div class="kalkulator-inner">
+    <div class="section-title">Karakterkalkulator</div>
+    <div class="kalkulator-grid">
+    <div class="kalkulator-left">
+      <div class="kalkulator-card">
+        <div class="kalkulator-header">
+          <h2 class="karakter-kalkulator">Karakterkalkulator</h2>
+          <p class="kalkulator-tekst">Legg til fagene dine, velg standpunkt og eksamen. Snittet oppdateres umiddelbart.</p>
+        </div>
+
+        <div id="subjects"></div>
+
+        <div class="add-row">
+          <input id="new-subject" type="text" placeholder="Fagkode eller navn - trykk Enter for å legge til" />
+          <button id="add-subject">+ Legg til</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="kalkulator-summary">
+      <div class="summary-card">
+        <div class="summary-score">
+          <div class="score-val"><span id="average">0.00</span></div>
+          <div class="score-sub">av 6,00</div>
+        </div>
+        <ul class="summary-list">
+          <li>Høyeste karakter: <strong id="highest">—</strong></li>
+          <li>Laveste karakter: <strong id="lowest">—</strong></li>
+          <li>Uten eksamen: <strong id="without-exam">0 fag</strong></li>
+          <li>Konkurransepoeng: <strong id="comp-points">0.0</strong></li>
+        </ul>
+        <button class="compare-btn">Sammenlign studier</button>
+      </div>
+    </aside>
+  </div>
+  </div>
 </section>
+
+<script src="script.js"></script>
+</body>
+</html>
