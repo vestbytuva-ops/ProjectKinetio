@@ -1,33 +1,213 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden; /* Dette kutter brutalt bort alt som prøver å stikke ut på sidene */
-}
+    :root {
+    --bg: #f5faf7;
+    --text: #0f2f24;
+    --muted: #5f7f73;
+    --grad-1: linear-gradient(90deg, #34d399, #60a5fa);
+    --grad-2: linear-gradient(90deg, #3ba379, #93c5fd);
+    --dark-mode: #2d2d30;
+    --progress: white;
+    --line: white;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 
-.hero-section {
-    width: 100vw;
-    height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1761182784593-0a7b285d7caf?q=80&w=1256&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+    body.dark-mode {
+    --bg: #2d2d30;
+    --text: #f1f1f1;
+    --muted: #aaaaaa;
+    }
 
-.hero-section h1 {
-    position: absolute;
-
-    bottom: 40px;
-    left: 50px;
-
-    font-family: 'Arial', sans-serif;
-    font-size: 10rem;
-    color: black;
+    * {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    }
 
-    z-index: 10;
-}
+    body {
+    background: var(--bg);
+    color: black;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    }
 
-.hero-section header {
+    header {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    height: 40px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    z-index: 1000;
+    gap: 20px;
+    }
+
+    #logout {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: auto;
+    display: none;
+    }
+
+    .admin-panel .hamburger {
+    display: none;
+    }
+
+    .admin-header button {
+    background-color: transparent;
+    border: none;
+    color: var(--text);
+    display: none;
+    cursor: pointer;
+    }
+
+    .logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+    cursor: pointer;
+    }
+
+    .hamburger {
+    width: 28px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    }
+
+    .hamburger span {
+    height: 2px;
+    background: black;
+    border-radius: 2px;
+    transition: 0.3s ease;
+    }
+
+    .nav {
+    position: fixed;
+    inset: 0;
+    background: #554a48;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+    z-index: 99;
+    }
+
+    .nav.open {
+    transform: translateY(0);
+    }
+
+    .nav a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #F5F5DC;
+    text-decoration: none;
+    }
+
+    section {
+    min-height: 100vh;
+    padding: clamp(1rem, 4vw, 3rem);
+    display: flex;
+    align-items: center;
+    }
+
+    .hero {
+    background-image: url('https://images.unsplash.com/photo-1761182784593-0a7b285d7caf?q=80&w=1912&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-size: cover;      /* Sørger for at bildet fyller hele flaten uansett skjerm */
+  background-position: center; /* Holder motivet sentrert */
+    }
+
+    .hero h1 {
+    position: absolute;
+    bottom: 0px; /* Helt i bunnen */
+    left: 30px;  /* Litt avstand fra venstrekant */
     
+    /* Typografi som matcher bildet */
+    font-family: 'Inter';
+    font-size: clamp(4rem, 12vw, 8rem); /* Skalerer størrelsen etter skjermen */
+    font-weight: 400;
+    color: #000000;
+    margin: 0;
+    line-height: 0.95; /* Drar teksten litt tettere til bunnen */
+    z-index: 2; /* Ligger oppå bildet */
+    }
+
+/* Hovedboksen for hele seksjonen */
+/* Hovedboksen for hele seksjonen */
+.intro {
+  background-color: #554a48;
+  color: #ebdcd5;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  width: 100%;
+  
+  /* --- DETTE ER DE TO NYE LINJENE --- */
+  min-height: 100vh; /* Tvinger seksjonen til å bli like høy som skjermen */
+  padding: 0;        /* Overskriver standard-paddingen fra 'section' slik at den går helt ut i kantene */
 }
+
+/* Boksen som holder teksten på venstre side */
+.tekst-innhold {
+  padding: 80px 60px; /* Luft rundt teksten, juster etter behov */
+  display: flex;
+  align-items: center; /* Sentrerer teksten loddrett i boksen */
+}
+
+/* Styler hele tekstblokken nøyaktig som i designet ditt */
+.tekst-innhold p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;          /* Størrelsen fra designet ditt */
+  font-weight: 400;         /* "Regular" tykkelse */
+  line-height: 1.1;         /* Tett linjeavstand, slik det ser ut på bildet */
+  margin: 0;
+  max-width: 942px;         /* Bredden på tekstboksen fra skjermbildet ditt */
+}
+/* Sidelinjen på høyre side som holder sirklene */
+.farge-sidebar {
+  border-left: 1px solid #3d3533; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;            
+  justify-content: center;        
+  padding: 40px 0;
+  height: 100%;
+  /* 1. ENDRING: Fjern 'gap: 15px;' helt! Hvis gap står der, vil ikke sirklene overlappe. */
+}
+
+/* Felles stil for alle sirklene */
+.sirkel {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;             
+  position: relative; /* Gjør at vi har full kontroll på rekkefølgen (hvem som ligger øverst) */
+  
+  /* 2. ENDRING: Legg til en negativ margin her */
+  margin-bottom: -15px; /* Drar den underliggende sirkelen 15 piksler OPP */
+}
+
+/* Valgfritt: Fjern marginen på den aller siste sirkelen så bunnen av designet blir rent */
+.sirkel:last-child {
+  margin-bottom: 0;
+}
+
+.sirkel-1 { background-color: #d1ced6; z-index: 5; }
+.sirkel-2 { background-color: #31272b; z-index: 4; }
+.sirkel-3 { background-color: #dec5aa; z-index: 3; }
+.sirkel-4 { background-color: #5d5656; z-index: 2; }
+.sirkel-5 { background-color: #2b3851; z-index: 1; }
