@@ -149,3 +149,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
+// Options click handler (interactive postcard tiles)
+document.addEventListener('DOMContentLoaded', () => {
+	const options = document.querySelectorAll('.option');
+	if (!options || options.length === 0) return;
+	options.forEach(opt => {
+		opt.addEventListener('click', () => {
+			options.forEach(o => o.classList.remove('active'));
+			opt.classList.add('active');
+		});
+	});
+});
+

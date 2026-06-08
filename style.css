@@ -148,6 +148,85 @@
     z-index: 2; /* Ligger oppå bildet */
     }
 
+.feature-intro {
+  background: #0d1214;
+  padding: clamp(3rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Options - postcard-like interactive tiles */
+.options {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.option {
+  --defaultBackground: #E6E9ED;
+  position: relative;
+  flex: 1 1 120px;
+  min-width: 80px;
+  height: 480px;
+  margin: 0 8px;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: var(--defaultBackground);
+  background-image: var(--optionBackground);
+  background-size: cover;
+  background-position: center;
+  transition: flex 600ms cubic-bezier(.05,.61,.41,.95), margin 300ms, border-radius 300ms;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+}
+
+.option .shadow {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 140px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+  transition: box-shadow 300ms;
+}
+
+.option .label {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  color: white;
+}
+
+.option .icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  display:flex; align-items:center; justify-content:center;
+  color: #222; font-size:20px;
+}
+
+.option .info .main { font-weight:700; font-size:1.1rem }
+.option .info .sub { opacity:0.85; font-size:0.9rem }
+
+.option:not(.active) { flex: 1 1 80px; border-radius: 20px; transform: scale(.98); }
+.option.active { flex: 5 1 520px; border-radius: 36px; margin: 0; }
+
+.credit { display:block; color:#cfcfcf; margin-top:14px; text-align:center; font-size:0.85rem }
+
+@media (max-width: 1024px) {
+  .options { gap: 12px; }
+  .option { height: 420px; }
+}
+
+@media (max-width: 760px) {
+  .options { flex-direction: column; gap: 18px; }
+  .option { width: 100%; height: 260px; }
+  .option.active { flex: none; }
+}
+
 /* Hovedboksen for hele seksjonen */
 /* Hovedboksen for hele seksjonen */
 .intro {
@@ -156,10 +235,7 @@
   display: grid;
   grid-template-columns: 75% 25%;
   width: 100%;
-  
-  /* --- DETTE ER DE TO NYE LINJENE --- */
-  min-height: 100vh; /* Tvinger seksjonen til å bli like høy som skjermen */
-  padding: 0;        /* Overskriver standard-paddingen fra 'section' slik at den går helt ut i kantene */
+  padding: 0;
 }
 
 /* Boksen som holder teksten på venstre side */
